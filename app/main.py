@@ -21,7 +21,7 @@ app.include_router(router_pages)
 
 @app.on_event("startup")
 def startup():
-    redis = aioredis.from_url("redis://localhost", encoding="utf8", decode_responses=True)
+    redis = aioredis.from_url("redis://localhost:6379", encoding="utf8", decode_responses=True)
     FastAPICache.init(RedisBackend(redis), prefix="cache")
 
 
