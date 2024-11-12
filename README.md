@@ -43,7 +43,7 @@ app_bookings/
 ### Установка репозитория с проектом
 
     ```
-    git clone https://github.com/yoda007008/yourproject.git
+    git clone https://github.com/yoda007008/app_bookings.git
     ```
 
 Проект будет доступен по адресу: `http://127.0.0.1:8000/docs`
