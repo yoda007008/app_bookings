@@ -2,6 +2,8 @@ from app.tasks.celery import celery
 from PIL import Image
 from pathlib import Path 
 
+# пример celery task
+'''
 @celery.task
 def process_pic( 
     path: str,
@@ -12,4 +14,4 @@ def process_pic(
     im_resizzed_200_100 = im.resize((200, 100))
     im_resizzed_1000_500.save(f"app/static/resizzed_1000_500_{im_path.name}")
     im_resizzed_200_100.save(f"app/static/resizzed_200_100_{im_path.name}")
-    
+'''
