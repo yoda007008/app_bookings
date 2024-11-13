@@ -9,8 +9,8 @@ router = APIRouter(
     tags=["Загрузка картинок"]
 )
 
-@router.post("/hotels")
-async def add_hotel_image(name: int, file: UploadFile):
+@router.post("/bookings")
+async def add_booking_image(name: int, file: UploadFile):
     im_path = f"app/static/{name}.webp"
     with open(im_path, "wb+") as file_object:
         shutil.copyfileobj(file.file, file_object)
