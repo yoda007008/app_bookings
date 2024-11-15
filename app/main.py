@@ -3,6 +3,7 @@ from typing import AsyncIterator, Optional
 from fastapi import FastAPI, Query
 from datetime import date
 from pydantic import BaseModel
+from app.admin.views import UsersAdmin
 from app.booking.router import router as router_bookings
 from app.users.models import Users
 from app.users.router import router as router_users
@@ -29,15 +30,6 @@ def startup():
 
 app = FastAPI()
 admin = Admin(app, engine)
-
-
-class UsersAdmin(ModelView, model=Users):
-    column_list = [Users.id, Users.email]
-    column_details_exclude_list = [Users.hashed_password]
-    can_delete = False
-    name = "Пользователь"
-    name_plural = "Пользователи"
-    icon = "fa-solid fa-user"
 
 
 admin.add_view(UsersAdmin)
