@@ -9,3 +9,7 @@ class Users(Base):
     hashed_password = Column(String, nullable=False)
 
     booking = relationship("Bookings", back_populates="user")
+
+    def __str__(self):
+        return f"User {self.email}"
+    

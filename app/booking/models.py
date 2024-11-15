@@ -15,3 +15,6 @@ class Bookings(Base):
     total_days = Column(Integer, Computed("date_from - date_to"))
 
     user = relationship("Users", back_populates="booking")
+
+    def __str__(self):
+        return f"Booking #{self.id}"
