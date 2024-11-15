@@ -35,5 +35,6 @@ admin = Admin(app, engine)
 admin.add_view(UsersAdmin)
 admin.add_view(BookingsAdmin)
 
+
 # запуск сервера (команда) uvicorn app.main:app --reload
 

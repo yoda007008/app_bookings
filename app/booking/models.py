@@ -16,5 +16,6 @@ class Bookings(Base):
 
     user = relationship("Users", back_populates="booking")
 
+
     def __str__(self):
         return f"Booking #{self.id}"
