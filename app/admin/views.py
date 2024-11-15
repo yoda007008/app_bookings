@@ -12,8 +12,7 @@ class UsersAdmin(ModelView, model=Users):
     icon = "fa-solid fa-user"
 
 class BookingsAdmin(ModelView, model=Users):
-    column_list = [c.name for c in Bookings.__table__.c]
-    column_details_exclude_list = [Users.hashed_password]
+    column_list = [c.name for c in Bookings.__table__.c] + [Bookings.user]
     name = "Бронь"
     name_plural = "Брони"
     
