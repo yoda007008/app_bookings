@@ -3,7 +3,7 @@ from typing import AsyncIterator, Optional
 from fastapi import FastAPI, Query
 from datetime import date
 from pydantic import BaseModel
-from app.admin.views import UsersAdmin
+from app.admin.views import UsersAdmin, BookingsAdmin
 from app.booking.router import router as router_bookings
 from app.users.models import Users
 from app.users.router import router as router_users
@@ -33,6 +33,7 @@ admin = Admin(app, engine)
 
 
 admin.add_view(UsersAdmin)
+admin.add_view(BookingsAdmin)
 
 # запуск сервера (команда) uvicorn app.main:app --reload
 
