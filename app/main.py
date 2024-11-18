@@ -29,7 +29,7 @@ def startup():
 
 
 app = FastAPI()
-admin = Admin(app, engine, authentication_backend)
+admin = Admin(app, engine, authentication_backend=authentication_backend)
 
 
 admin.add_view(UsersAdmin)
