@@ -2,15 +2,19 @@ from sqladmin import Admin
 from sqladmin.authentication import AuthenticationBackend
 from starlette.requests import Request
 from starlette.responses import RedirectResponse
+from app.exeptions import IncorrectEmailPassword
+from app.users.auth import authenticate_user, create_access_token
 
 
 class AdminAuth(AuthenticationBackend):
     async def login(self, request: Request) -> bool:
         form = await request.form()
-        username, password = form["username"], form["password"]
+        email, password = form["username"], form["password"]
 
-        # Validate username/password credentials
-        # And update session
+        user = await authenticate_user(email, password)
+        if not user:
+            raise IncorrectEmailPassword
+        access_token = create_access_token({"sub": str(user.id)})
         request.session.update({"token": "..."})
 
         return True
@@ -31,4 +35,3 @@ class AdminAuth(AuthenticationBackend):
 
 
 authentication_backend = AdminAuth(secret_key="...")
-admin = Admin(app=..., authentication_backend=authentication_backend، ...)
