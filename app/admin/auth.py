@@ -4,6 +4,7 @@ from starlette.requests import Request
 from starlette.responses import RedirectResponse
 from app.exeptions import IncorrectEmailPassword
 from app.users.auth import authenticate_user, create_access_token
+from app.users.dependencies import get_current_user
 
 
 class AdminAuth(AuthenticationBackend):
@@ -27,9 +28,12 @@ class AdminAuth(AuthenticationBackend):
 
     async def authenticate(self, request: Request) -> bool:
         token = request.session.get("token")
-
         if not token:
-            return False
+            return RedirectResponse(request.url_for("admin:login"), status_code=302)
+        user = await get_current_user(token)
+        
+        if not token:
+            return RedirectResponse(request.url_for("admin:login"), status_code=302)
 
         # Check the token in depth
         return True

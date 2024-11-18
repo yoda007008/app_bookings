@@ -9,7 +9,7 @@ from app.users.models import Users
 from app.users.router import router as router_users
 from app.pages.router import router as router_pages
 from sqladmin import Admin, ModelView
-
+from app.admin.auth import authentication_backend
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from fastapi_cache.decorator import cache
@@ -29,7 +29,7 @@ def startup():
 
 
 app = FastAPI()
-admin = Admin(app, engine)
+admin = Admin(app, engine, authentication_backend)
 
 
 admin.add_view(UsersAdmin)
