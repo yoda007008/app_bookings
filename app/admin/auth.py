@@ -14,8 +14,9 @@ class AdminAuth(AuthenticationBackend):
         user = await authenticate_user(email, password)
         if not user:
             raise IncorrectEmailPassword
-        access_token = create_access_token({"sub": str(user.id)})
-        request.session.update({"token": "..."})
+        if user:   
+            access_token = create_access_token({"sub": str(user.id)})
+            request.session.update({"token": access_token})
 
         return True
 
